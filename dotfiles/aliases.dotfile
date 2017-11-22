@@ -1,0 +1,59 @@
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Mac aliases
+alias gesture='killall Dock'
+
+# custom aliases
+alias dirsize="find . -maxdepth 1 -type d -name '[!.]*' -exec du -sh {} + 2>&1"
+alias update='sudo softwareupdate -ia'
+alias se='sudo emacs -nw'
+alias c='clear'
+alias grep='grep --color=auto'
+alias mkdir='mkdir -pv'
+alias h='history'
+alias now='date +"%T'
+alias ping='ping -c 5'
+alias ss='sudo /sbin/shutdown'
+alias wget='wget -c'
+alias wgetm='echo "wget -r -nc -p --html-extension --convert-links --restrict-file-names=windows --no-parent --domains"'
+alias http='python -m SimpleHTTPServer'
+alias wgets='H="--header"; wget $H="Accept-Language: en-us,en;q=0.5" $H="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" $H="Connection: keep-alive" -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --referer=http://www.askapache.com/'
+alias eb='emacs ~/.bashrc'
+alias reload='source ~/.bashrc'
+alias unhide='defaults write com.apple.Finder AppleShowAllFiles YES'
+alias hide='defaults write com.apple.Finder AppleShowAllFiles NO'
+alias rsynch='echo "rsync -rlz --rsh="/usr/bin/ssh" <dir/file> <hostname>:<dirpath>"'
+alias towiki='pandoc -f markdown -t mediawiki'
+
+#git aliases
+alias g='git'
+alias gs='git status'
+alias pr='post-review'
+alias ga='git add '
+alias gb='git branch'
+alias gc='git commit'
+alias gd='git diff'
+alias gco='git checkout'
+function git-recursive() {
+maxgits=4
+find -L . \( -name .git -type d \) -print0 | xargs -0 -I {} -n 1 -P $maxgits bash -c "cd {}/.. ; git $*"
+}
+
+#mac aliases
+function slocate() {
+mdfind "kMDItemDisplayName == '$@'wc";
+}
+
+#cd aliases
+alias ..='cd ..'
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."

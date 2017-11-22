@@ -1,0 +1,42 @@
+[user]
+	name = Sugavanesh Balasubramanian
+	email = sugavaneshb@gmail.com
+[credential]
+	helper = osxkeychain
+[push]
+	default = matching
+[color]
+	ui = auto
+[core]
+	pager = less -FMRiX
+	excludesfile = /Users/sugavaneshb/.gitignore_global
+[alias]
+	changed = "!f() { if [[ -z \"$1\" ]]; then git -c color.status=never status -s | cut -c4- | cut -d' ' -f1; else git show --pretty='format:' --name-only $1 | grep -vP '^$'; fi; }; f"
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+	ll  = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr) %Cblue%an %C(yellow)%d%Creset%s' --abbrev-commit --all -30
+        st = status
+        co = checkout
+        change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
+        ci = commit -a
+        files = show --oneline
+        graph = log --graph --decorate --all
+        lol = log --graph --decorate --pretty=oneline --abbrev-commit
+        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        sync = pull --rebase
+        update = merge --ff-only origin/master
+        mend = commit --amend --no-edit
+        mendedit = commit --amend
+        unadd = reset --
+        unedit = checkout --
+        unstage = reset HEAD
+        unrm = checkout --
+        unstash = stash pop
+        lastchange = log -n 1 -p
+	lastcr = !git log --grep \"^cr \" -1 --oneline | cut -f 1 -d\" \"
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
