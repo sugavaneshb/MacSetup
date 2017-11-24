@@ -57,3 +57,13 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
+alias cddotfiles="cd /Users/sugavaneshb/workspace/MacSetup/dotfiles"
+
+# Open a new emacs textfile as scratchpad for quick copypaste
+function sp() {
+    cd ~/sp
+    NEW_UUID=$(perl -pe 'binmode(STDIN, ":bytes"); tr/a-zA-Z0-9//dc;' </dev/urandom | head -c 8)
+    echo "Your scratchpad..." >$NEW_UUID.txt
+    emacs $NEW_UUID.txt
+}
+
