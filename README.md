@@ -15,9 +15,9 @@ Backup all system preferences to **Dropbox/apps_setup/** directory.
 * Currently I use `base16-atelier-dune-256`.
 
 ### Python setup
-* Install python from **Homebrew**. Update `PATH` in your `rc/profile` dotfile.
-* Homebrew python comes with `pip2`. Use it install `jupyter`, `numpy`
-* Install packages with `pip2` from `pip2.txt` file in this directory
+* Install python/python3 from **Homebrew**. Update `PATH` in your `rc/profile` dotfile.
+* Homebrew python comes with `pip2/pip3`. Use it install `jupyter`, `numpy`
+* Install packages with `pip2/pip3` from `pip2.txt` / `pip3.txt` file in this directory
 
 
 #### To Do

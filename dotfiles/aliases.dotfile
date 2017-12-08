@@ -11,6 +11,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias gesture='killall Dock'
 
 # custom aliases
+alias brewg="brew update; brew upgrade; brew cleanup"
 alias dirsize="find . -maxdepth 1 -type d -name '[!.]*' -exec du -sh {} + 2>&1"
 alias update='sudo softwareupdate -ia'
 alias se='sudo emacs -nw'
