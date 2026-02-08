@@ -1,25 +1,28 @@
 # MacSetup
-This repo will contain all my dotfiles and my mac related setup.
+This repo contains my dotfiles and Mac setup configuration.
 
-## Setup
-Backup all system preferences to **Dropbox/apps_setup/** directory.
+## Quick Start
+Run `dotfiles/install.sh` to symlink all dotfiles to their expected locations.
 
-### Homebrew
-* Install homebrew form [here](https://brew.sh/)
-* Install all brew formulae from `Brewfile` in this repo.
-* Periodically run `brew bundle dump (--force)` to update the Brewfile
+## Dotfiles
+Located in `dotfiles/`:
+* `zshrc.dotfile` - Zsh config (oh-my-zsh, aliases, history, environment)
+* `zprofile.dotfile` - Zsh profile (Homebrew shell env)
+* `gitconfig.dotfile` - Git config (aliases, color, pager)
+* `gitignore_global.dotfile` - Global gitignore
+* `emacs.dotfile` - Emacs config (editorconfig, indentation, keybindings)
+* `install.sh` - Symlinks all dotfiles to `~/`
 
-### iTerm
+## Homebrew
+* Install Homebrew from [here](https://brew.sh/)
+* Install all brew formulae: `brew bundle --file=Brewfile`
+* To update the Brewfile: `brew bundle dump --force`
+
+## Python
+* Python is installed via Homebrew (`python@3.13` / `python@3.14`)
+* Install packages: `pip3 install --break-system-packages -r pip3.txt`
+* To update pip3.txt: `pip3 list --format=freeze > pip3.txt`
+
+## iTerm
 * Import preferences from **Dropbox/apps_setup/iterm2**
-* Use the themes maintained in [this git repo](https://github.com/martinlindhe/base16-iterm2)
-* Currently I use `base16-atelier-dune-256`.
-
-### Python setup
-* Install python/python3 from **Homebrew**. Update `PATH` in your `rc/profile` dotfile.
-* Homebrew python comes with `pip2/pip3`. Use it install `jupyter`, `numpy`
-* Install packages with `pip2/pip3` from `pip2.txt` / `pip3.txt` file in this directory
-
-
-#### To Do
-* Add all dotfiles
-* Document applications setup
+* Themes from [base16-iterm2](https://github.com/martinlindhe/base16-iterm2)
