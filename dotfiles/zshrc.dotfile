@@ -63,12 +63,19 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# Add brew zsh-completions to fpath (must be before oh-my-zsh source)
+fpath=(/opt/homebrew/share/zsh-completions /opt/homebrew/share/zsh/site-functions $fpath)
+
+# Plugins
+plugins=(
+    git
+    brew
+    tmux
+    z
+    fzf
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,6 +102,22 @@ alias wget='wget -c'
 alias brewg='brew update; brew upgrade; brew cleanup'
 alias unhide='defaults write com.apple.Finder AppleShowAllFiles YES'
 alias hide='defaults write com.apple.Finder AppleShowAllFiles NO'
+
+# Modern CLI aliases
+alias f='fd'
+alias rgi='rg -i'
+alias j='jq "."'
+alias tree='tree -C'
+alias du='dust'
+alias preview='fzf --preview "cat {}"'
+
+# Network aliases
+alias ports='lsof -i -P -n | grep LISTEN'
+alias ip='curl -s ifconfig.me'
+alias localip='ipconfig getifaddr en0'
+
+# Mac aliases
+alias emptytrash='sudo rm -rf ~/.Trash/*'
 
 # Scratchpad - open a random temp file in emacs
 function sp() {
