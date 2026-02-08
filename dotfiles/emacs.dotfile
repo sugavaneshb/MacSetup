@@ -1,52 +1,20 @@
-; -*- mode: Lisp;-*-
+;; Use spaces instead of tabs, display tabs as 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
-;; Add various emacs repositories
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+;; Enable editorconfig (built-in since Emacs 30)
+(editorconfig-mode 1)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
- '(mac-command-modifier (quote meta))
- '(package-selected-packages
-   (quote
-    (web-beautify log4j-mode bash-completion markdown-preview-mode markdown-mode markdown-mode+ ##))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-;; (add-to-list 'load-path "~/emacs-mode")
-;; (require 'json)
-;; (require 'json-reformat)
+ '(mac-command-modifier (quote meta)))
 
 ;; Use custom modes for *.dotfile files
-(add-to-list 'auto-mode-alist '("rc\\.dotfile" . shell-script-mode))			      
+(add-to-list 'auto-mode-alist '("rc\\.dotfile" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("aliases\\.dotfile" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("config\\.dotfile" . conf-mode))
 (add-to-list 'auto-mode-alist '("profile\\.dotfile" . shell-script-mode))
 
-
-;; load emacs configuration
-;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-
-;; (require 'load-directory)
-
 ;; Always follow symlinks
-;; This is to edit rc files and other dot files
 (setq vc-follow-symlinks t)
-
-;; Syntax highlighting
-
