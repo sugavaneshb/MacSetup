@@ -1,15 +1,14 @@
-#!/bin/bash
+#!/bin/zsh
 # Handles the installation of various dot files automatically
 # Inspired by Zach Holman's dotfiles installer
 
 # Get the directory where install.sh is located
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+DIR="${0:A:h}"
 
+ZSHRC="$DIR/zshrc.dotfile"
+ZPROFILE="$DIR/zprofile.dotfile"
 GIT_CONFIG="$DIR/gitconfig.dotfile"
 GIT_IGNORE_FILE="$DIR/gitignore_global.dotfile"
-BASHRC="$DIR/bashrc.dotfile"
-BASH_PROFILE="$DIR/bash_profile.dotfile"
-ALIASES="$DIR/aliases.dotfile"
 EMACS_CONFIG="$DIR/emacs.dotfile"
 
 echo ''
@@ -43,13 +42,12 @@ warn () {
 link_file() {
     local src=$1 dst=$2
 
-    if [ $dst == $src ]
+    if [ $dst = $src ]
     then
         fail "Can't link $src to $dst"
         skip=true;
     else
         # Backup the file if it already exists
-	# TODO: Include a cron job to cleanup old dotfiles
         if [ ! -h $dst ]; then
             now=$(date +"%m-%d-%Y")
             info "$dst already exists, backing it up"
@@ -68,19 +66,19 @@ link_file() {
     fi
 }
 
-# Bash
-title "Setup bash config"
-link_file $BASH_PROFILE ~/.bash_profile
-link_file $BASHRC ~/.bashrc
-link_file $ALIASES ~/.aliases
+# Zsh
+title "Setup zsh config"
+link_file $ZSHRC ~/.zshrc
+link_file $ZPROFILE ~/.zprofile
 
 # Git
 title "Setup git configuration"
 link_file $GIT_CONFIG ~/.gitconfig
 link_file $GIT_IGNORE_FILE ~/.gitignore_global
 
-# Setup emacs config
+# Emacs (uses ~/.emacs.d/init.el instead of ~/.emacs)
 title "Setup emacs config"
-link_file $EMACS_CONFIG ~/.emacs
+mkdir -p ~/.emacs.d
+link_file $EMACS_CONFIG ~/.emacs.d/init.el
 
 title "--The End--"
